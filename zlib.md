@@ -4,7 +4,7 @@ tagline:     zlib ffi binding
 version:     1.0
 ---
 
-v1.0 | [code](http://code.google.com/p/lua-files/source/browse/zlib.lua) | [test](http://code.google.com/p/lua-files/source/browse/zlib_test.lua) | [hash benchmark](https://code.google.com/p/lua-files/source/browse/hash_benchmark.lua) | zlib 1.2.7 | LuaJIT 2
+v1.0 | zlib 1.2.7 | LuaJIT 2
 
 ## `local zlib = require'zlib'`
 
