@@ -22,7 +22,7 @@ Returns the zlib version.
     * 'gzip' - wrap the deflate stream with a gzip header and trailer
     * 'deflate' - write a raw deflate stream with no header or trailer
   * `level` controls the compression level (0-9 from none to best)
-  * for `windowBits`, `memLevel` and `strategy` refer to the [zlib manual](http://www.zlib.net/manual.html).
+  * for `windowBits`, `memLevel` and `strategy` refer to the [zlib manual].
     * note that `windowBits` is always in the positive range 8..15.
 
 Compress a data stream using the DEFLATE algorithm. The data is read from the `read` function which should return the next string or `cdata, size` pair every time it is called, until EOF when it should return `nil`. The compressed data is written in chunks using the `write` function.
@@ -96,3 +96,6 @@ An Adler-32 checksum is almost as reliable as a CRC32 but can be computed much f
 ## `zlib.crc32(s, [size][, crc]) -> n`
 
 Start or update a running CRC-32B of a string or cdata buffer and return the updated CRC-32. Pre- and post-conditioning (one's complement) is performed within this function so it shouldn't be done by the application.
+
+
+[zlib manual]: http://www.zlib.net/manual.html
