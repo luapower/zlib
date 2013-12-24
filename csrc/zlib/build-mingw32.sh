@@ -1,3 +1,3 @@
-gcc *.c -O3 -s -shared -o ../../bin/z.dll -I.
+gcc *.c -O3 -s -shared -o ../../bin/mingw32/z.dll -I.
 
-cd ../.. && bin/luajit zlib_test.lua
+#../../bin/mingw32/luajit zlib_test.lua
