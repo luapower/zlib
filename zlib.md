@@ -1,7 +1,7 @@
 ---
 project:     zlib
 tagline:     zlib ffi binding
-version:     1.0
+category:    Compression
 ---
 
 v1.0 | zlib 1.2.7 | LuaJIT 2
