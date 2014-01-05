@@ -4,8 +4,6 @@ tagline:     zlib ffi binding
 category:    Compression
 ---
 
-v1.0 | zlib 1.2.7 | LuaJIT 2
-
 ## `local zlib = require'zlib'`
 
 ## `zlib.version() -> s`
