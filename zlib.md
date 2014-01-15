@@ -1,7 +1,6 @@
 ---
 project:     zlib
 tagline:     zlib ffi binding
-category:    Compression
 ---
 
 ## `local zlib = require'zlib'`
