@@ -1,6 +1,6 @@
 ---
-project:     zlib
-tagline:     zlib ffi binding
+project: zlib
+tagline: deflate & gzip
 ---
 
 ## `local zlib = require'zlib'`
