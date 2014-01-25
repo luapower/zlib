@@ -1,0 +1,14 @@
+*
+!/bin/
+!/csrc/
+!/bin/mingw32/
+!/bin/linux32/
+!/media/
+
+!/zlib*
+!/bin/mingw32/z.dll
+!/bin/linux32/libz*
+!/csrc/zlib/
+!/csrc/zlib/**
+!/media/gzip/
+!/media/gzip/**
