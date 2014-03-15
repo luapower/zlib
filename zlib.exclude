@@ -20,8 +20,8 @@
 !/bin/mingw64/z.dll
 !/bin/linux32/libz.so
 !/bin/linux64/libz.so
-!/bin/osx32/libz.so
-!/bin/osx64/libz.so
+!/bin/osx32/libz.dylib
+!/bin/osx64/libz.dylib
 !/csrc/zlib/
 !/csrc/zlib/**
 !/media/gzip/
