@@ -68,6 +68,32 @@ local function inflate_deflate(init)
 		strm.next_out, strm.avail_out = buf, bufsize
 		strm.next_in, strm.avail_in = nil, 0
 
+		if type(read) == 'string' then
+			local s = read
+			local done
+			read = function()
+				if done then return end
+				done = true
+				return s
+			end
+		elseif type(read) == 'table' then
+			local t = read
+			local i = 0
+			read = function()
+				i = i + 1
+				return t[i]
+			end
+		end
+
+		local t
+		local asstring = write == ''
+		if type(write) == 'table' or asstring then
+			t = asstring and {} or write
+			write = function(data, sz)
+				t[#t+1] = ffi.string(data, sz)
+			end
+		end
+
 		local function flush()
 			local sz = bufsize - strm.avail_out
 			if sz == 0 then return end
@@ -85,21 +111,29 @@ local function inflate_deflate(init)
 						flush()
 					until not flate(strm, C.Z_FINISH)
 					flush()
-					return
+					break
 				end
 				strm.next_in, strm.avail_in = data, size or #data
 			end
 			flush()
 			if not flate(strm, C.Z_NO_FLUSH) then
 				flush()
-				return
+				break
 			end
+		end
+
+		if asstring then
+			return table.concat(t)
+		else
+			return t
 		end
 	end
 end
 
-local inflate = inflate_deflate(init_inflate) --inflate(read, write[, bufsize][, format][, windowBits])
-local deflate = inflate_deflate(init_deflate) --deflate(read, write[, bufsize][, format][, level][, windowBits][, memLevel][, strategy])
+--inflate(read, write[, bufsize][, format][, windowBits])
+local inflate = inflate_deflate(init_inflate)
+--deflate(read, write[, bufsize][, format][, level][, windowBits][, memLevel][, strategy])
+local deflate = inflate_deflate(init_deflate)
 
 --utility functions
 
