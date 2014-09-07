@@ -22,11 +22,19 @@ Returns the zlib version.
   * for `windowBits`, `memLevel` and `strategy` refer to the [zlib manual].
     * note that `windowBits` is always in the positive range 8..15.
 
-Compress a data stream using the DEFLATE algorithm. The data is read from the `read` function which should return the next string or `cdata, size` pair every time it is called, until EOF when it should return `nil`. The compressed data is written in chunks using the `write` function.
+Compress a data stream using the DEFLATE algorithm. The data is read from the
+`read` function which should return the next string or `cdata, size` pair
+every time it is called, until EOF when it should return `nil` or nothing.
+The compressed data is written in chunks using the `write` function.
+
+For convenience, `read` can also be a string or a list of strings, and `write`
+can be a list to which to add the output chunks, or the empty string, in which
+case the output is returned as a string.
 
 ## `zlib.inflate(read, write[, bufsize][, format][, windowBits])`
 
-Uncompress a data stream that was compressed using the DEFLATE algorithm. The arguments have the same meaning as for `deflate`.
+Uncompress a data stream that was compressed using the DEFLATE algorithm.
+The arguments have the same meaning as for `deflate`.
 
 ## `zlib.compress(s, [size][, level]) -> s`
 ## `zlib.compress(cdata, size[, level]) -> s`
