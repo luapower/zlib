@@ -1,1 +1,1 @@
-gcc -O2 -s -static-libgcc -fPIC *.c -shared -o ../../bin/linux64/libz.so -I.
+P=linux64 C=-fPIC L="-s -static-libgcc" D=libz.so A=libz.a ./build.sh
