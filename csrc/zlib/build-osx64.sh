@@ -1,1 +1,2 @@
-gcc -arch x86_64 -O2 *.c -shared -install_name @loader_path/libz.dylib -o ../../bin/osx64/libz.dylib -I.
+P=osx64 C="-arch x86_64" L="-arch x86_64 -install_name @loader_path/libz.dylib" \
+	D=libz.dylib A=libz.a ./build.sh

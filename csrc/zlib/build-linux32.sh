@@ -1,1 +1,1 @@
-gcc -O2 -s -static-libgcc *.c -shared -o ../../bin/linux32/libz.so -I.
+P=linux32 L="-s -static-libgcc" D=libz.so A=libz.a ./build.sh

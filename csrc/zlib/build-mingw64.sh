@@ -1,1 +1,1 @@
-gcc -O2 -s -static-libgcc *.c -shared -o ../../bin/mingw64/z.dll -I.
+P=mingw64 C=-DZLIB_DLL L="-s -static-libgcc" D=z.dll A=z.a ./build.sh
