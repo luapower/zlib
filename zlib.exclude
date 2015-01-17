@@ -18,10 +18,16 @@
 !/zlib*
 !/bin/mingw32/z.dll
 !/bin/mingw64/z.dll
+!/bin/mingw32/z.a
+!/bin/mingw64/z.a
 !/bin/linux32/libz.so
 !/bin/linux64/libz.so
+!/bin/linux32/libz.a
+!/bin/linux64/libz.a
 !/bin/osx32/libz.dylib
 !/bin/osx64/libz.dylib
+!/bin/osx32/libz.a
+!/bin/osx64/libz.a
 !/csrc/zlib/
 !/csrc/zlib/**
 !/media/gzip/
