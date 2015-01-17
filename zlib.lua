@@ -24,11 +24,14 @@ end
 local deflate = flate(C.deflate)
 local inflate = flate(C.inflate)
 
---FUN TIME: windowBits is range 8..15 (default = 15) but can also be -8..15 for raw deflate with no zlib header
---or trailer and can also be greater than 15 which reads/writes a gzip header and trailer instead of a zlib wrapper.
---so I added a format parameter which can be 'deflate', 'zlib', 'gzip' (default = 'zlib') to cover all the cases
---so that windowBits can express only the window bits in the initial 8..15 range.
---additionally for inflate, windowBits can be 0 which means use the value in the zlib header of the compressed stream.
+--FUN TIME: windowBits is range 8..15 (default = 15) but can also be -8..15
+--for raw deflate with no zlib header or trailer and can also be greater than
+--15 which reads/writes a gzip header and trailer instead of a zlib wrapper.
+--so I added a format parameter which can be 'deflate', 'zlib', 'gzip'
+--(default = 'zlib') to cover all the cases so that windowBits can express
+--only the window bits in the initial 8..15 range. additionally for inflate,
+--windowBits can be 0 which means use the value in the zlib header of the
+--compressed stream.
 
 local function format_windowBits(format, windowBits)
 	if format == 'gzip' then windowBits = windowBits + 16 end
