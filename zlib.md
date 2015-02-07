@@ -60,7 +60,7 @@ Close the gzip file flushing any pending updates.
 
 ## `gzfile:flush(flag)`
 
-Flushes any pending updates to the file. The flag can be `'none'`, `'partial'`, `'sync'`, `'full'`, `'finish'`, `'block'` or `'trees'`. Refer to the [zlib manual](http://www.zlib.net/manual.html) for their meaning.
+Flushes any pending updates to the file. The flag can be `'none'`, `'partial'`, `'sync'`, `'full'`, `'finish'`, `'block'` or `'trees'`. Refer to the [zlib manual] for their meaning.
 
 ## `gzfile:read_tobuffer(buf, size) -> bytes_read`
 ## `gzfile:read(size) -> s`
