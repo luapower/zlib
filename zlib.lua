@@ -1,4 +1,7 @@
---zlib binding
+
+--zlib binding.
+--Written by Cosmin Apreutesei. Public Domain.
+
 local ffi = require'ffi'
 require'zlib_h'
 local C = ffi.load'z'
