@@ -1,5 +1,4 @@
 ---
-project: zlib
 tagline: deflate & gzip
 ---
 
