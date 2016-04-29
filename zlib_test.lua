@@ -64,3 +64,13 @@ end
 test'gzip'
 test'zlib'
 test'deflate'
+
+local function testPull(format)
+  local deflate = zlib.deflatePull(format)
+  local chunk1 = deflate(gen(5000)) -- this should be a lua string
+  local chunk2 = deflate(gen(4000)) -- this should be a lua string
+
+  local inflate = zlib.inflatePull(format)
+  assert(inflate(chunk1) .. inflate(chunk2) == gen(5000) .. gen(4000))
+end
+testPull'gzip'
