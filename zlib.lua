@@ -143,6 +143,37 @@ local inflate = inflate_deflate(init_inflate)
 --deflate(read, write[, bufsize][, format][, level][, windowBits][, memLevel][, strategy])
 local deflate = inflate_deflate(init_deflate)
 
+local function inflatePull()
+	return function(chunk)
+		-- TBD
+	end
+end
+
+local function deflatePull()
+	local bufsize = 16384
+	local strm, flate = init_deflate(format)
+
+	local buf = ffi.new('uint8_t[?]', bufsize)
+	strm.next_out, strm.avail_out = buf, bufsize
+
+	return function(chunk, format)
+		if not chunk then return end
+
+		local output = ""
+		strm.next_in, strm.avail_in = chunk, #chunk
+		flate(strm, C.Z_NO_FLUSH)
+
+		repeat
+			local sz = bufsize - strm.avail_out
+			if sz == 0 then return end
+			output = output .. ffi.string(buf, sz)
+			strm.next_out, strm.avail_out = buf, bufsize
+		until not flate(strm, C.Z_FINISH)
+
+		return output
+	end
+end
+
 --utility functions
 
 local function compress_tobuffer(data, size, level, buf, sz)
@@ -274,7 +305,9 @@ return {
 	C = C,
 	version = version,
 	inflate = inflate,
+	inflatePull = inflatePull,
 	deflate = deflate,
+	deflatePull = deflatePull,
 	uncompress_tobuffer = uncompress_tobuffer,
 	uncompress = uncompress,
 	compress_tobuffer = compress_tobuffer,
