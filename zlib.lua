@@ -112,6 +112,7 @@ local function inflate_deflate(init)
 		local data, size --data must be anchored as an upvalue!
 		while true do
 			if strm.avail_in == 0 then --input buffer empty: refill
+				::again::
 				data, size = read()
 				if not data then --eof: finish up
 					local ret
@@ -121,7 +122,11 @@ local function inflate_deflate(init)
 					flush()
 					break
 				end
-				strm.next_in, strm.avail_in = data, size or #data
+				size = size or #data
+				if size == 0 then --avoid buffer error
+					goto again
+				end
+				strm.next_in, strm.avail_in = data, size
 			end
 			flush()
 			if not flate(strm, C.Z_NO_FLUSH) then
